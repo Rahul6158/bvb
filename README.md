@@ -1,6 +1,6 @@
 # Bonam Vinay Bhaskar (BVB) - Portfolio & Interview Preparation Suite
 
-A clean, responsive, editorial reading web application for portfolio self-introduction and comprehensive technical, behavioral, and company preparation for **Data Extraction Engineer & Backend Systems** roles.
+A clean, responsive, editorial reading web application for portfolio self-introduction and comprehensive technical, behavioral, company, and compensation preparation for **Data Extraction Engineer & Backend Systems** roles.
 
 ## 📄 Pages & Architecture
 
@@ -41,6 +41,13 @@ A clean, responsive, editorial reading web application for portfolio self-introd
   - **Key Interview Questions About Gamyam**: Company function, your exact role, Shopee project, reasons for leaving (growth-focused), and key lessons learned (scraper vs. production data extraction system).
   - **The 5 Core Verifiable Resume Anchors**: Shopee pipeline, Naver Lambda &rarr; EC2 migration, SQS + Redis duplicate-processing fix, AWS architecture, and the $15,000/month AWS cost optimization.
 
+- **`salary-negotiation.html`**: Strategic Compensation & Negotiation Playbook.
+  - **Market Benchmarks & Personal Target Matrix**: Grounded targeting for ₹22–26 LPA total compensation based on direct domain match (~1.5 years production data extraction).
+  - **Exact Scripts & Word-for-Word Responses**: Handling "What are your expectations?" without giving away your minimum early; pivoting away from existing compensation.
+  - **Counter-Offer Scenarios**: Playbooks for ₹18L, ₹20L, and ₹23–25L offers using the "Pause & Push / Silence Technique".
+  - **CTC Breakdown Checklist**: Unpacking Fixed Pay vs Performance Bonus vs Sign-on vs Retention clauses (₹25L CTC ≠ ₹25L fixed).
+  - **Your Strongest Leverage Point**: Direct production expertise in high-scale web extraction, SQS/Redis locks, reverse engineering, and $15K/mo AWS optimizations.
+
 ## 🚀 Getting Started
 
-Simply open `index.html`, `interview-questions.html`, `behavioral-questions.html`, or `company.html` in any modern web browser. No external dependencies or build steps required.
+Simply open `index.html`, `interview-questions.html`, `behavioral-questions.html`, `company.html`, or `salary-negotiation.html` in any modern web browser. No external dependencies or build steps required.

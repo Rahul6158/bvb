@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Profiles: D.E. Shaw & Gamyam Infotech - Bonam Vinay Bhaskar</title>
+  <title>D.E. Shaw Salary Negotiation Strategy - Bonam Vinay Bhaskar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -326,7 +326,7 @@
       color: var(--badge-text);
     }
 
-    /* Section Cards */
+    /* Section Item */
     .q-item {
       margin-bottom: 2.25rem;
       padding-bottom: 2rem;
@@ -365,7 +365,7 @@
       font-family: var(--font-body);
     }
 
-    /* Callouts */
+    /* Callouts & Coaching Scripts */
     .callout {
       font-family: var(--font-ui);
       font-size: 0.925rem;
@@ -376,6 +376,14 @@
       border-radius: 0 6px 6px 0;
       margin: 1rem 0 1.25rem 0;
       color: var(--text);
+    }
+
+    .callout.script {
+      background: rgba(37, 99, 235, 0.06);
+      border-left: 3px solid #2563eb;
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--heading);
     }
 
     .callout.danger {
@@ -398,36 +406,30 @@
       color: #6ee7b7;
     }
 
-    /* Fact Cards Grid */
-    .fact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1.25rem 0 1.5rem 0;
+    /* Salary Table */
+    .salary-table {
+      width: 100%;
+      border-collapse: collapse;
       font-family: var(--font-ui);
+      font-size: 0.95rem;
+      margin: 1.5rem 0;
     }
 
-    .fact-card {
-      background: var(--badge-bg);
+    .salary-table th, .salary-table td {
+      padding: 0.75rem 1rem;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.15rem;
+      text-align: left;
     }
 
-    .fact-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .fact-value {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .salary-table th {
+      background: var(--badge-bg);
       color: var(--heading);
-      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .salary-table tr.highlight-row {
+      background: var(--highlight-bg);
+      font-weight: 600;
     }
 
     ul, ol {
@@ -546,6 +548,7 @@
         </svg>
         <span>Self Intro</span>
       </a>
+
       <!-- Prep Sections Dropdown Menu -->
       <div class="dropdown">
         <button class="dropdown-toggle" id="prepDropdownBtn" title="Questions & Prep Sections">
@@ -563,11 +566,11 @@
             <span>🤝</span>
             <span>Behavioral & HR (24)</span>
           </a>
-          <a href="company.html" class="dropdown-item active">
+          <a href="company.html" class="dropdown-item">
             <span>🏢</span>
             <span>Company Profiles</span>
           </a>
-          <a href="salary-negotiation.html" class="dropdown-item">
+          <a href="salary-negotiation.html" class="dropdown-item active">
             <span>💰</span>
             <span>Salary & Negotiation</span>
           </a>
@@ -578,170 +581,230 @@
 
   <!-- Search & Category Filters -->
   <div class="category-nav-wrapper">
-    <input type="text" id="searchInput" class="search-box" placeholder="Search company notes, facts, Gamyam projects, Shopee, D.E. Shaw pitch..." />
+    <input type="text" id="searchInput" class="search-box" placeholder="Search negotiation scripts, counter-offers, CTC breakdown, 22-26 LPA targets..." />
     <div class="category-pills">
-      <button class="pill-btn active" data-cat="all">All Profiles</button>
-      <button class="pill-btn" data-cat="deshaw">D.E. Shaw Overview (45-60s)</button>
-      <button class="pill-btn" data-cat="gamyam-overview">Gamyam Infotech Profile</button>
-      <button class="pill-btn" data-cat="gamyam-qa">Gamyam Interview Q&A</button>
-      <button class="pill-btn" data-cat="claims">The 5 Core Resume Claims</button>
+      <button class="pill-btn active" data-cat="all">All Guidance</button>
+      <button class="pill-btn" data-cat="targets">1. Target Range (₹22–26 LPA)</button>
+      <button class="pill-btn" data-cat="scripts">2. Exact Scripts & Responses</button>
+      <button class="pill-btn" data-cat="scenarios">3. Counter-Offer Scenarios</button>
+      <button class="pill-btn" data-cat="ctc">4. CTC Breakdown Checklist</button>
+      <button class="pill-btn" data-cat="arguments">5. Core Arguments & Pitfalls</button>
     </div>
   </div>
 
   <!-- Main Article Container -->
   <main class="article-container" id="articleHolder" contenteditable="true" spellcheck="false">
     <div class="article-header">
-      <h1 class="article-title">Company Profiles & Context</h1>
-      <div class="article-subtitle">D.E. Shaw Firm Knowledge & Bulletproof Answers on Gamyam Infotech</div>
+      <h1 class="article-title">D.E. Shaw Compensation & Negotiation Strategy</h1>
+      <div class="article-subtitle">Data Extraction Engineer • Market Benchmarks, Exact Scripts & Strategic Positioning</div>
     </div>
 
-    <!-- SECTION 1: D.E. SHAW -->
-    <section class="category-section" data-category="deshaw">
+    <!-- SECTION 1: MARKET DATA & TARGET MATRIX -->
+    <section class="category-section" data-category="targets">
       <div class="category-header">
-        <span>1. D.E. Shaw — Company Summary & 45–60s Pitch</span>
-        <span class="category-count">Target Firm</span>
+        <span>1. Market Benchmarks & Personal Target Matrix</span>
+        <span class="category-count">Hyderabad Benchmarks</span>
       </div>
 
       <div class="q-item">
-        <h3>"What do you know about D.E. Shaw?" (45–60 Second Answer)</h3>
-        <p><strong>Answer:</strong><br>
-        D.E. Shaw is a global investment and technology development firm, founded in 1988 by David E. Shaw. The firm started with a strong focus on computational finance and has grown into a global organization combining investment management with sophisticated technology and data-driven research.</p>
-        <p>The company uses both systematic and fundamental investment approaches, and technology is a major part of how the firm operates. D.E. Shaw has more than 750 developers and engineers working on technology and builds its own proprietary systems when existing solutions don't meet its requirements.</p>
-        <p>What I found particularly interesting is the company's emphasis on analytical rigor, data, technology, and solving difficult problems. That connects well with my experience in data extraction and building scalable data pipelines.</p>
-      </div>
-
-      <div class="q-item">
-        <h3>3 Core Facts Worth Remembering</h3>
-        <div class="fact-grid">
-          <div class="fact-card">
-            <div class="fact-label">Founded</div>
-            <div class="fact-value">1988</div>
-            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">By David E. Shaw</div>
-          </div>
-          <div class="fact-card">
-            <div class="fact-label">Business Nature</div>
-            <div class="fact-value">Global Investment + Tech Development</div>
-            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Systematic & Fundamental</div>
-          </div>
-          <div class="fact-card">
-            <div class="fact-label">Engineering Scale</div>
-            <div class="fact-value">750+ Developers & Engineers</div>
-            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Builds proprietary internal systems</div>
-          </div>
-        </div>
-        <div class="callout">
-          <strong>Indian Presence:</strong> D.E. Shaw has offices in <strong>Hyderabad, Bengaluru, and Gurugram</strong>.
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: GAMYAM INFOTECH PROFILE -->
-    <section class="category-section" data-category="gamyam-overview">
-      <div class="category-header">
-        <span>2. Gamyam Infotech — Accurate Framing & Public Context</span>
-        <span class="category-count">Current Employer</span>
-      </div>
-
-      <div class="q-item">
-        <h3>If DE Shaw asks: "Tell me about your current company"</h3>
-        <p><strong>Natural, Grounded Answer:</strong><br>
-        Currently, I’m working at Gamyam Infotech LLP in Hyderabad as a Software Engineer. The company works on software and technology projects, and my work there has mainly been focused on backend engineering and large-scale web data extraction.</p>
-        <p>In my role, I've worked on building data extraction systems for platforms such as Shopee, Naver, Swiggy, Zomato, Blinkit and Zepto. My work involves Python, Django and FastAPI on the backend, along with AWS services such as Lambda, SQS and EC2, and databases like PostgreSQL and MongoDB.</p>
-        <p>A significant part of my experience has been around building reliable extraction pipelines — handling jobs, retries, concurrency, data validation, deduplication and monitoring. So although Gamyam is my employer, the experience I've gained there has been very hands-on from both the software engineering and data-extraction sides.</p>
-      </div>
-
-      <div class="q-item">
-        <h3>Public Background vs. Interview Strategy</h3>
-        <p>The company appears publicly as <strong>Gamyam Info Tech LLP</strong>, registered in the Hyderabad/Rangareddy area.</p>
-        <p>Public employee profiles identify people working at Gamyam Infotech in software/backend engineering roles, and job postings focus on Python, Django, scalable web applications, ownership of modules, and deployment.</p>
-        <div class="callout danger">
-          <strong>Crucial Distinction:</strong> Do not say <em>"Gamyam is a leading global data extraction enterprise"</em> unless officially verifiable. Public records are concise; your actual hands-on projects, systems, and code are your true proof points.
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: GAMYAM Q&A -->
-    <section class="category-section" data-category="gamyam-qa">
-      <div class="category-header">
-        <span>3. Likely Questions About Gamyam Infotech</span>
-        <span class="category-count">4 Key Questions</span>
-      </div>
-
-      <div class="q-item">
-        <h3>1. "What does your company do?"</h3>
-        <p><strong>Answer:</strong><br>
-        Gamyam works on software and technology projects. In my particular role, I've been primarily involved in backend engineering and web data extraction.</p>
-        <p>A lot of my work has been around building production extraction pipelines for different platforms, along with the backend infrastructure required to process, store and monitor that data.</p>
-      </div>
-
-      <div class="q-item">
-        <h3>2. "What exactly do you do at Gamyam?"</h3>
-        <p><strong>Answer:</strong><br>
-        I'm mainly responsible for the engineering side of data extraction.</p>
-        <p>That includes understanding how the source exposes its data, building the extraction logic, handling APIs and browser-based extraction when required, processing and validating the results, and integrating everything with our backend systems.</p>
-        <p>I've also worked on the infrastructure side with AWS, SQS, databases, Redis and monitoring.</p>
-      </div>
-
-      <div class="q-item">
-        <h3>3. "What is the biggest project you've worked on there?"</h3>
-        <p><strong>Answer (Shopee Multi-Market Pipeline):</strong><br>
-        One of the bigger projects I've worked on was a multi-market Shopee extraction pipeline.</p>
-        <p>It was designed as an asynchronous system where clients submit jobs and receive a job ID. The jobs are then distributed to different workers depending on the extraction approach.</p>
-        <p>The workers extract the data, return the results for processing, and successful records are validated and stored. Failed jobs can be retried, and the overall pipeline is monitored using Grafana and alerts.</p>
-        <p>The interesting part for me was that it wasn't just about scraping a page — it involved designing the complete distributed processing workflow.</p>
-      </div>
-
-      <div class="q-item">
-        <h3>4. "Why do you want to leave Gamyam?"</h3>
-        <p><strong>Answer (Professional & Growth-Focused):</strong><br>
-        I've learned a lot at Gamyam, especially through hands-on experience with data extraction, Python, AWS and distributed systems.</p>
-        <p>At this point, I'm looking for an environment where I can work on more challenging problems, learn from highly experienced engineers and deepen my understanding of large-scale data and engineering systems.</p>
-        <p>That's what attracted me to this opportunity at DE Shaw.</p>
-        <div class="callout success">
-          <strong>Rule:</strong> Keep it 100% positive. Don't say anything negative about Gamyam, management, or workload.
-        </div>
-      </div>
-
-      <div class="q-item">
-        <h3>5. "What did you learn at Gamyam?"</h3>
-        <p><strong>Answer (Scraper vs. Production System):</strong><br>
-        The biggest thing I learned is that <strong>building a scraper and building a reliable data-extraction system are very different things</strong>.</p>
-        <p>Initially, the focus can be on simply getting the data. But when you operate at scale, you have to think about retries, concurrency, duplicate processing, data quality, monitoring, database performance and failure recovery.</p>
-        <p>Working on these systems gave me a much better understanding of production engineering.</p>
-        <div class="callout">
-          <strong>Why this works:</strong> Connects your Gamyam experience directly to why you are ready for DE Shaw's Data Extraction Engineer role.
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: THE 5 CORE CLAIMS -->
-    <section class="category-section" data-category="claims">
-      <div class="category-header">
-        <span>4. What DE Shaw Interviewers Actually Care About</span>
-        <span class="category-count">5 Core Resume Claims</span>
-      </div>
-
-      <div class="q-item">
-        <h3>"What did YOU personally build?" — The 5 Anchors</h3>
-        <p>If the DE Shaw interviewer asks about Gamyam, they will care 10x more about your personal engineering decisions than company headcount. Master these 5 stories:</p>
+        <h3>What the Current Data Suggests</h3>
+        <p>Reported Software Engineer total compensation for D.E. Shaw India spans roughly <strong>₹20–35 LPA</strong>, with Hyderabad specific figures showing ~₹20–22 LPA base plus additional variable components. While entry data engineer estimates cite ₹14.5–18.6 LPA, <strong>your background is uniquely distinct from a standard fresher</strong>: your resume proves ~1.5 years of production experience in the exact problem space this role demands (Python, web extraction, APIs, AWS SQS/Lambda/EC2, distributed pipelines, PostgreSQL/MongoDB, Redis).</p>
         
-        <ol>
-          <li>
-            <strong>Shopee Pipeline:</strong> Asynchronous job submission &rarr; SQS queue &rarr; distributed worker pool &rarr; validation &rarr; Aurora PostgreSQL / MongoDB &rarr; Grafana monitoring.
-          </li>
-          <li>
-            <strong>Naver Extraction System:</strong> Migrated from Lambda to EC2 persistent service running FastAPI + Gunicorn with 32 workers to maintain continuous browser session states in MongoDB.
-          </li>
-          <li>
-            <strong>SQS + Redis Duplicate-Processing Problem:</strong> Identified visibility timeout expiring before slow workers finished; resolved with Redis distributed locking (SETNX with TTL), heartbeat extensions, and idempotent writes.
-          </li>
-          <li>
-            <strong>AWS Architecture:</strong> Decoupled producer-consumer pipelines using API Gateway, Lambda, SQS, EC2, PostgreSQL, MongoDB, Redis, and Grafana.
-          </li>
-          <li>
-            <strong>$15,000/Month AWS Cost Optimization:</strong> Account-wide audit removing unused NAT Gateways, routing S3/DynamoDB traffic through Gateway VPC endpoints, rightsizing EC2/Lambda concurrency, and cleaning up unattached EBS volumes.
-          </li>
-        </ol>
+        <table class="salary-table">
+          <thead>
+            <tr>
+              <th>Offer Level</th>
+              <th>Total CTC Range</th>
+              <th>Strategic Assessment for Your Profile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lower End</td>
+              <td>₹15–18 LPA</td>
+              <td>Acceptable as floor, but below your targeted value given direct domain match.</td>
+            </tr>
+            <tr>
+              <td>Reasonable</td>
+              <td>₹18–22 LPA</td>
+              <td>Solid market territory; good foundation for negotiation.</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>🎯 Strong Target</td>
+              <td>₹22–26 LPA</td>
+              <td>The realistic, justified sweet spot to anchor toward.</td>
+            </tr>
+            <tr>
+              <td>Upper Tier</td>
+              <td>₹26–30 LPA</td>
+              <td>Possible; heavily dependent on outstanding technical round scores and leveling.</td>
+            </tr>
+            <tr>
+              <td>Stretch / High</td>
+              <td>₹30L+</td>
+              <td>Don't assume up front; depends on specific seniority band and package structure.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Key Mindset:</strong> Don't walk in thinking "I deserve ₹30L." Your strongest position is that your experience is <em>unusually relevant and immediately productive</em> for this specific role.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EXACT WORD-FOR-WORD SCRIPTS -->
+    <section class="category-section" data-category="scripts">
+      <div class="category-header">
+        <span>2. Exact Scripts & Word-for-Word Responses</span>
+        <span class="category-count">Recruiter Dialogues</span>
+      </div>
+
+      <div class="q-item">
+        <h3>When the Recruiter Asks: "What are your salary expectations?"</h3>
+        <p><strong>First Response (Don't volunteer a premature number):</strong></p>
+        <div class="callout script">
+          "I'm primarily looking for the right role and a good technical fit. Since this position is closely aligned with my experience, I'd be looking for compensation that's competitive with the role and the level you're considering me for. I'm happy to discuss the range once we have more clarity on the role."
+        </div>
+        
+        <p><strong>If They Insist on a Number:</strong></p>
+        <div class="callout script">
+          "Based on the role and my experience in production data extraction and backend systems, I'd be targeting something around the low-to-mid twenties in total compensation, but I'm flexible depending on the overall structure and level."
+        </div>
+
+        <p><strong>If You Want to Give a Concrete Range:</strong></p>
+        <div class="callout script">
+          "I'd be looking at around ₹22–26 LPA total compensation, depending on the fixed and variable components."
+        </div>
+        <div class="callout success">
+          <strong>Why this works:</strong> Gives you room to negotiate without making an unrealistic or rigid demand.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>When Asked About Your Current Salary</h3>
+        <div class="callout danger">
+          <strong>Never Say:</strong> "I'm currently earning X, so I expect a 50% hike." Your existing salary should never be your primary benchmark when bridging to a Tier-1 firm like D.E. Shaw.
+        </div>
+        <p><strong>Recommended Professional Framing:</strong></p>
+        <div class="callout script">
+          "My current compensation is based on my existing role and company. For this move, I'm more interested in the responsibilities and market level of the position. Since this role is directly aligned with my production experience in data extraction, Python and distributed systems, I'd prefer to discuss compensation based on the role and the value I can bring."
+        </div>
+        <p><em>(If they require the exact number for verification, provide it honestly without inflating it.)</em></p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COUNTER-OFFER SCENARIOS -->
+    <section class="category-section" data-category="scenarios">
+      <div class="category-header">
+        <span>3. Counter-Offer Scenarios & The "Silence Technique"</span>
+        <span class="category-count">Response Playbook</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Scenario A: If They Offer ₹18 LPA</h3>
+        <p>Don't immediately accept or reject. Use the <strong>pause & push technique</strong>:</p>
+        <div class="callout script">
+          "Thank you. I'm definitely interested in the opportunity. I was hoping we could explore whether there's some flexibility in the compensation, considering my hands-on experience with production-scale data extraction, AWS, SQS and distributed pipelines."
+        </div>
+        <div class="callout success">
+          <strong>Crucial Tactic:</strong> Stop talking immediately after asking. Let the recruiter break the silence and respond first.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Scenario B: If They Offer ₹20 LPA</h3>
+        <p>Nudge gently toward your target band:</p>
+        <div class="callout script">
+          "I'm very interested in the role. Based on the responsibilities and the experience I bring in data extraction and backend systems, I was hoping we could get a little closer to the ₹23–25 LPA range. Is there flexibility in the package?"
+        </div>
+        <div class="callout">
+          <strong>Notice the subtle psychology:</strong> Don't demand <em>"I need ₹25L"</em>. Ask <em>"Is there flexibility?"</em> — it keeps the conversation open and collaborative.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Scenario C: If They Offer ₹23–25 LPA</h3>
+        <p>This is already a strong, meaningful offer. Rather than pushing blindly for a higher top-line number, shift your focus to <strong>deconstructing the breakdown</strong>:</p>
+        <div class="callout script">
+          "Could you help me understand the fixed component, variable component and any other benefits included in the CTC?"
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CTC BREAKDOWN CHECKLIST -->
+    <section class="category-section" data-category="ctc">
+      <div class="category-header">
+        <span>4. Deconstructing CTC: ₹25 LPA CTC ≠ ₹25 LPA Fixed</span>
+        <span class="category-count">Compensation Math</span>
+      </div>
+
+      <div class="q-item">
+        <h3>What to Inspect Before Signing</h3>
+        <p>A quoted CTC can look very different in monthly bank credit. Always clarify these 8 elements:</p>
+        <ul>
+          <li><strong>Fixed / Base Pay:</strong> The guaranteed monthly salary component (aim for &ge; 70-80% of total).</li>
+          <li><strong>Performance Bonus:</strong> Is it guaranteed in year one, or strictly linked to company/individual performance?</li>
+          <li><strong>Joining / Sign-on Bonus:</strong> Is it paid in Month 1? Is there a clawback clause (e.g. 1-year retention)?</li>
+          <li><strong>Annual Bonus:</strong> What is the historical payout percentage for this band?</li>
+          <li><strong>Retention / Deferred Components:</strong> Is part of the CTC paid only after 2 or 3 years?</li>
+          <li><strong>Timing of Payouts:</strong> When is the variable component disbursed (annually, semi-annually)?</li>
+          <li><strong>Relocation / Benefits:</strong> Medical insurance coverage, food/travel allowances, retirement benefits (PF/Gratuity).</li>
+          <li><strong>Target vs Guaranteed:</strong> Is the figure an achievable target or an optimistic upper bound?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CORE ARGUMENTS & PITFALLS -->
+    <section class="category-section" data-category="arguments">
+      <div class="category-header">
+        <span>5. Your Strongest Arguments vs Fatal Mistakes</span>
+        <span class="category-count">Negotiation Leverage</span>
+      </div>
+
+      <div class="q-item">
+        <h3>What NOT to Argue (Fatal Mistakes)</h3>
+        <div class="callout danger">
+          &bull; <strong>Don't say:</strong> <em>"I have an AI/ML degree."</em> (This role hires for web extraction and backend engineering).<br>
+          &bull; <strong>Don't say:</strong> <em>"I really need a higher salary because of personal expenses."</em><br>
+          &bull; <strong>Don't say:</strong> <em>"My current company pays me very little, so I need a big jump."</em>
+        </div>
+
+        <h3>Your Strongest Negotiation Argument</h3>
+        <div class="callout success">
+          <strong>"I already have production experience in the exact problem area you're hiring for."</strong>
+        </div>
+        <p>Remind them of what you have built in production, not just studied academically:</p>
+        <ul>
+          <li>Processing millions of extracted records across live consumer platforms (Shopee, Swiggy, Zomato, Blinkit, Zepto, Naver).</li>
+          <li>Reverse engineering internal REST/GraphQL APIs and bypassing bot protection.</li>
+          <li>Overcoming TLS and JA3 fingerprinting using <code>curl_cffi</code>.</li>
+          <li>Solving distributed race conditions with SQS visibility timeouts and Redis locking.</li>
+          <li>Decoupled AWS architecture (Lambda, SQS, EC2, PostgreSQL, MongoDB, Redis, Grafana).</li>
+        </ul>
+      </div>
+
+      <div class="q-item">
+        <h3>Defending Your High-Value Resume Metrics</h3>
+        <p>Your resume contains impressive numbers that justify a premium compensation tier — but only if you defend them technically when asked:</p>
+        <ul>
+          <li><strong>"$15K/month AWS Savings":</strong> Be ready to explain VPC endpoint routing, NAT gateway consolidation, Lambda concurrency tuning, and EBS cleanup.</li>
+          <li><strong>"9.5M+ Records":</strong> Explain distributed batching, parallel database scans, and TTL retention policies.</li>
+          <li><strong>"32 Gunicorn Workers":</strong> Explain the CPU-to-worker core formula and why EC2 persistent workers replaced Lambda for session-heavy extraction.</li>
+        </ul>
+      </div>
+
+      <div class="q-item">
+        <h3>The Master Sequence</h3>
+        <div class="callout">
+          <strong>1. Technical Excellence:</strong> Ace the coding, reverse engineering, and system design rounds.<br>
+          <strong>2. Demonstrate Resume Mastery:</strong> Prove every claim on your resume with deep technical explanations.<br>
+          <strong>3. Establish Strong Mutual Fit:</strong> Show genuine interest in D.E. Shaw's engineering problems.<br>
+          <strong>4. Secure the Offer:</strong> Let them extend an offer first.<br>
+          <strong>5. Negotiate Professionally:</strong> Target the ₹22–26 LPA range using direct domain relevance as your anchor.
+        </div>
+        <div class="callout danger">
+          <strong>Golden Rule:</strong> Never reveal your minimum too early! If your minimum is ₹20 LPA, never say "₹20 LPA is what I need." If you say that, ₹20 LPA immediately becomes your <em>ceiling</em> instead of your floor.
+        </div>
       </div>
     </section>
   </main>
@@ -759,7 +822,7 @@
     const searchInput = document.getElementById('searchInput');
     const pillBtns = document.querySelectorAll('.pill-btn');
 
-    const STORAGE_KEY = 'vinay_company_content_v1';
+    const STORAGE_KEY = 'vinay_salary_content_v1';
     const THEME_KEY = 'vinay_intro_theme_v1';
 
     const defaultHTML = articleHolder.innerHTML;
@@ -804,7 +867,7 @@
 
     // Reset back to original
     resetBtn.addEventListener('click', () => {
-      if (confirm('Reset company notes back to original?')) {
+      if (confirm('Reset negotiation notes back to original?')) {
         articleHolder.innerHTML = defaultHTML;
         localStorage.removeItem(STORAGE_KEY);
         showToast('Reset to original');
