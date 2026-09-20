@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D.E. Shaw & Backend Interview Questions - Bonam Vinay Bhaskar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfbfb;
+      --paper: #ffffff;
+      --text: #1d2129;
+      --text-muted: #5f6b7c;
+      --heading: #0f141c;
+      --border: #e6e8eb;
+      --accent: #2563eb;
+      --highlight-bg: #eff6ff;
+      --highlight-border: #bfdbfe;
+      --highlight-text: #1d4ed8;
+      --badge-bg: #f1f5f9;
+      --badge-text: #475569;
+      --button-bg: #ffffff;
+      --button-hover: #f1f5f9;
+      --button-border: #d0d7de;
+      --code-bg: #f6f8fa;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --font-body: 'Newsreader', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-code: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --paper: #161b22;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --heading: #f0f6fc;
+      --border: #30363d;
+      --accent: #38bdf8;
+      --highlight-bg: rgba(56, 189, 248, 0.12);
+      --highlight-border: rgba(56, 189, 248, 0.35);
+      --highlight-text: #7dd3fc;
+      --badge-bg: #21262d;
+      --badge-text: #a5d6ff;
+      --button-bg: #21262d;
+      --button-hover: #30363d;
+      --button-border: #363b42;
+      --code-bg: #1f242c;
+      --shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      line-height: 1.85;
+      padding: 2.5rem 1rem 5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      max-width: 820px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-family: var(--font-ui);
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button, .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.825rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--button-border);
+      border-radius: 6px;
+      background: var(--button-bg);
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    button:hover, .nav-link:hover {
+      background: var(--button-hover);
+      border-color: var(--accent);
+    }
+
+    button:active, .nav-link:active {
+      transform: scale(0.98);
+    }
+
+    /* Filter & Search Bar */
+    .category-nav-wrapper {
+      max-width: 820px;
+      margin: 0 auto 1.5rem auto;
+      font-family: var(--font-ui);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    .category-pills {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .pill-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Article Container */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3.5rem 3.25rem;
+      box-shadow: var(--shadow);
+      outline: none;
+      position: relative;
+    }
+
+    .article-container[contenteditable="true"] {
+      cursor: text;
+    }
+
+    .article-container:focus-visible {
+      border-color: var(--accent);
+    }
+
+    /* Article Typography */
+    .article-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-title {
+      font-family: var(--font-ui);
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-subtitle {
+      font-family: var(--font-ui);
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Category Section Headers */
+    .category-section {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .category-header {
+      font-family: var(--font-ui);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.01em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-count {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+    }
+
+    /* Question Item */
+    .q-item {
+      margin-bottom: 2.25rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .q-item:last-child {
+      border-bottom: none;
+    }
+
+    .q-item.hidden {
+      display: none;
+    }
+
+    /* Highlighted Headings */
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--highlight-text);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 0.85rem;
+      background: var(--highlight-bg);
+      border-left: 3px solid var(--highlight-text);
+      border-radius: 0 6px 6px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    p strong {
+      font-weight: 600;
+      color: var(--heading);
+      font-family: var(--font-body);
+    }
+
+    /* Callout & Drilldown Boxes */
+    .callout {
+      font-family: var(--font-ui);
+      font-size: 0.925rem;
+      line-height: 1.6;
+      background: var(--badge-bg);
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.15rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0 1.25rem 0;
+      color: var(--text);
+    }
+
+    .callout strong {
+      font-family: var(--font-ui);
+      color: var(--heading);
+    }
+
+    .follow-up {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid #10b981;
+      padding: 0.75rem 1.15rem;
+      border-radius: 0 6px 6px 0;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      margin: 1.25rem 0;
+      color: var(--text);
+    }
+
+    .follow-up strong {
+      font-family: var(--font-ui);
+      color: #059669;
+    }
+
+    /* Code styling */
+    pre, code {
+      font-family: var(--font-code);
+      font-size: 0.925rem;
+    }
+
+    code {
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0 1.25rem 0;
+      line-height: 1.6;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      border: none;
+      color: inherit;
+    }
+
+    /* Priority table */
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      margin: 1.5rem 0;
+    }
+
+    .priority-table th, .priority-table td {
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .priority-table th {
+      background: var(--badge-bg);
+      color: var(--heading);
+      font-weight: 600;
+    }
+
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #111827;
+      color: #ffffff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+
+    [data-theme="dark"] .toast {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Small screens adjustments */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem 3rem;
+        font-size: 1.12rem;
+      }
+      .article-container {
+        padding: 2rem 1.25rem;
+        border-radius: 8px;
+      }
+      .article-title {
+        font-size: 1.55rem;
+      }
+      h3 {
+        font-size: 1.05rem;
+      }
+      .top-bar {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .top-bar, .category-nav-wrapper, .toast {
+        display: none !important;
+      }
+      .article-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+      h3 {
+        background: none;
+        border-left: 2px solid #000;
+        color: #000;
+        padding-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action & Info Bar -->
+  <div class="top-bar">
+    <div class="meta-info">
+      <span class="dot"></span>
+      <span>Click text anywhere to edit</span>
+    </div>
+    <div class="controls">
+      <button id="copyBtn" title="Copy visible text to clipboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy Text</span>
+      </button>
+      <button id="resetBtn" title="Reset changes back to default">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span>Reset</span>
+      </button>
+      <button id="themeToggle" title="Toggle Light/Dark Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+      <a href="index.html" class="nav-link" id="introLink" title="Go back to Self Introduction">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Self Intro</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Search and Category Filters -->
+  <div class="category-nav-wrapper">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search questions, keywords (e.g. SQS, TLS, JOIN, Shopee, Frida, 429)..." />
+    <div class="category-pills">
+      <button class="pill-btn active" data-cat="all">All (41)</button>
+      <button class="pill-btn" data-cat="resume">1. Resume Deep Dive (5)</button>
+      <button class="pill-btn" data-cat="scraping">2. Web Scraping & APIs (7)</button>
+      <button class="pill-btn" data-cat="networking">3. HTTP, TLS & Anti-Bot (5)</button>
+      <button class="pill-btn" data-cat="aws">4. AWS, SQS & Systems (8)</button>
+      <button class="pill-btn" data-cat="sql">5. SQL, DB & ETL (6)</button>
+      <button class="pill-btn" data-cat="dsa">6. Python & DSA (6)</button>
+      <button class="pill-btn" data-cat="reliability">7. Reliability & Monitoring (4)</button>
+      <button class="pill-btn" data-cat="matrix">Priority Matrix & Drilldown</button>
+    </div>
+  </div>
+
+  <!-- Single Article Container -->
+  <main class="article-container" id="articleHolder" contenteditable="true" spellcheck="false">
+    <div class="article-header">
+      <h1 class="article-title">D.E. Shaw & Backend Interview Preparation</h1>
+      <div class="article-subtitle">Data Extraction Engineer & Backend Systems • 41 Targeted Questions & Production Answers</div>
+    </div>
+
+    <!-- CATEGORY 1 -->
+    <section class="category-section" data-category="resume">
+      <div class="category-header">
+        <span>1. Resume Deep Dive & Project Experience</span>
+        <span class="category-count">5 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q1. "Walk me through your current work at Gamyam."</h3>
+        <p><strong>Answer:</strong><br>
+        Currently, I'm working as a Software Engineer at Gamyam Infotech. My main work is around Python backend development and web data extraction.</p>
+        <p>I work on building extraction pipelines for platforms like Shopee, Naver, Zomato, Swiggy, Blinkit, and Zepto. The systems extract things like product information, pricing, inventory, restaurant information, and other structured data.</p>
+        <p>My responsibility isn't just writing the scraper. I also work on the complete pipeline — sending requests, handling different types of responses, processing and validating the data, storing it in databases, handling retries and failures, and monitoring the system.</p>
+        <p>On the infrastructure side, I've worked with AWS Lambda, SQS, EC2, PostgreSQL, MongoDB and Redis.</p>
+        <p>So my experience is mainly around building reliable and scalable data-extraction systems rather than just writing one-off scraping scripts.</p>
+        <div class="callout">
+          <strong>Why they may ask it:</strong> Your resume claims production systems processing millions of records, so expect them to drill into exactly what you personally built.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q36. "You have mentioned a lot of technologies. Which one are you strongest in?"</h3>
+        <div class="callout">
+          <strong>Don't say:</strong> "I'm good at everything."
+        </div>
+        <p><strong>Say:</strong><br>
+        Python is my strongest language, especially for backend development and data extraction. I've used Python extensively with Django, FastAPI, HTTP clients, parsing libraries and AWS-based pipelines.</p>
+        <p>Around that, I have practical experience with SQL, PostgreSQL, MongoDB, Redis and AWS.</p>
+        <div class="callout">
+          <strong>Why:</strong> This is safer, more credible, and grounds your answers in proven production work.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q37. "Explain your Shopee project from beginning to end."</h3>
+        <p><strong>You should be able to answer:</strong></p>
+        <p>1. The client provides product IDs through our API.<br>
+        2. The request gets converted into a job and enters the job-management system.<br>
+        3. Jobs are distributed to appropriate workers depending on the extraction approach.<br>
+        4. The workers perform the extraction, validate the response and send the result back for processing.<br>
+        5. Successful results are stored, while failures are retried according to the retry policy.<br>
+        6. The pipeline is monitored using Grafana and alerts are generated for failures.</p>
+        <p>The important engineering challenges were request reliability, anti-bot behavior, concurrency, retries, deduplication and maintaining consistent job state.</p>
+        <div class="callout">
+          <strong>Context:</strong> Your resume describes this exact job lifecycle and worker-queue design.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q38. "Why did you use MongoDB for cookies/session data in the Naver project?"</h3>
+        <p><strong>Answer:</strong><br>
+        The browser automation process continuously maintained fresh session information, and the extraction workers needed to access that information.</p>
+        <p>MongoDB gave us a flexible way to store and retrieve those session records.</p>
+        <p>The workers could retrieve the latest relevant session information rather than generating everything independently.</p>
+        <div class="callout">
+          <strong>Context:</strong> Your resume describes this architecture explicitly for session lifecycle decoupling.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q41. "Why should we hire you for a Data Extraction Engineer role?"</h3>
+        <p><strong>A natural answer:</strong><br>
+        I think my experience is closely aligned with the role because I've already worked on production data-extraction systems rather than only academic scraping projects.</p>
+        <p>I've dealt with the complete process — understanding how websites expose data, extracting it, handling dynamic behavior, processing and validating it, storing it, and operating the pipeline at scale.</p>
+        <p>I've also worked on the engineering problems around extraction, like retries, concurrency, duplicate processing, monitoring and AWS infrastructure.</p>
+        <p>So I feel I can contribute from the beginning, while also having a lot of room to learn and improve further.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 2 -->
+    <section class="category-section" data-category="scraping">
+      <div class="category-header">
+        <span>2. Web Scraping & API Reverse Engineering</span>
+        <span class="category-count">7 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q2. "Suppose I give you a website. How would you extract data from it?"</h3>
+        <p><strong>Answer:</strong><br>
+        First, I would understand what data we need and inspect the website manually.</p>
+        <p>Then I would check whether the required data is present directly in the HTML or whether it is loaded dynamically through an API.</p>
+        <p>I would open the browser's developer tools and inspect the Network tab while interacting with the website. If I find an API returning structured JSON, I would generally prefer calling that API directly instead of using browser automation.</p>
+        <p>If the data is rendered through JavaScript and there isn't a usable API, I would consider Playwright or Selenium.</p>
+        <p>After extracting the data, I would validate the fields, handle missing or malformed values, deduplicate records, and store the structured output.</p>
+        <p>Finally, I would add retries, logging, monitoring and failure handling depending on the scale of the system.</p>
+        <div class="callout">
+          <strong>Why:</strong> The Data Extraction Engineer role explicitly emphasizes website dynamics, scraping/parsing systems, structured data, databases, scalable extraction and debugging website behavior.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q3. "How do you decide between Requests and Selenium/Playwright?"</h3>
+        <p><strong>Answer:</strong><br>
+        My first preference is always direct HTTP requests if they are sufficient.</p>
+        <p>Requests are faster, consume fewer resources, and are easier to scale because I don't need to maintain a browser instance.</p>
+        <p>I would use Playwright or Selenium when the website depends heavily on JavaScript, browser-generated state, dynamic rendering, or interactions that are difficult to reproduce through direct HTTP requests.</p>
+        <p>So basically, I don't choose browser automation by default. I first try to understand how the website works and use the lightest approach that reliably gets the required data.</p>
+        <div class="follow-up">
+          <strong>Follow-up they may ask:</strong> "Why not always use Selenium?"<br>
+          <em>Answer:</em> Because running browsers is significantly heavier. If I need to process millions of records, browser-based extraction can become expensive in terms of CPU, memory and execution time. If an API can provide the same information, direct HTTP is usually much more efficient.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q6. "How do you find an API behind a website?"</h3>
+        <p><strong>Answer:</strong><br>
+        I usually start with Chrome DevTools and open the Network tab.</p>
+        <p>Then I perform the action that loads the data — for example searching for a product or moving to the next page.</p>
+        <p>I filter the requests by Fetch/XHR and inspect the requests that return JSON or other structured data.</p>
+        <p>I look at the URL, HTTP method, query parameters, request body, headers, cookies and response.</p>
+        <p>Then I try to reproduce that request outside the browser using Python, initially keeping the important headers, parameters and session information.</p>
+        <p>Once I can reproduce it reliably, I can build the extraction logic around that endpoint.</p>
+        <div class="callout">
+          <strong>Interview Insight:</strong> Recent D.E. Shaw reports describe live endpoint-chain reverse engineering and finding changing payload parameters behind dashboard/store-locator pages.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q7. "What is the difference between GET and POST?"</h3>
+        <p><strong>Answer:</strong><br>
+        GET is generally used for retrieving resources, while POST is generally used for submitting data or triggering an operation.</p>
+        <p>GET parameters are commonly placed in the URL, while POST data is commonly sent in the request body.</p>
+        <p>GET requests are generally intended to be safe and cacheable, whereas POST is typically used when the request changes state or requires a larger structured payload.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q9. "What is BeautifulSoup?"</h3>
+        <p><strong>Answer:</strong><br>
+        BeautifulSoup is an HTML and XML parsing library in Python.</p>
+        <p>It doesn't itself download the webpage. We normally use something like requests to retrieve the HTML and then BeautifulSoup to parse it.</p>
+        <p>We can use CSS selectors, tags, attributes and other methods to locate the required elements.</p>
+        <div class="follow-up">
+          <strong>Follow-up:</strong> "BeautifulSoup vs Selenium?"<br>
+          <em>Answer:</em> BeautifulSoup is primarily a parser, while Selenium is a browser automation tool. BeautifulSoup works well when I already have the HTML and the required data is available in it. Selenium is useful when browser execution or interaction is required.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q10. "How do you handle a website where the HTML doesn't contain the data?"</h3>
+        <p><strong>Answer:</strong><br>
+        I wouldn't immediately assume scraping is impossible.</p>
+        <p>First I'd inspect the network calls made when the page loads. Usually, dynamically rendered data is coming from an API or another backend endpoint.</p>
+        <p>If I can identify that endpoint, I'd extract directly from it.</p>
+        <p>If the data depends on browser execution and can't easily be reproduced through HTTP, I'd use Playwright or Selenium.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q11. "How would you scrape 10,000 pages?"</h3>
+        <p><strong>Answer:</strong><br>
+        First I'd understand the pagination mechanism.</p>
+        <p>It could be page numbers, offset/limit, cursors, tokens, or an API parameter.</p>
+        <p>If it's a simple API, I'd iterate through the pages using requests and process each response.</p>
+        <p>For a large workload, I wouldn't necessarily process everything sequentially. I could divide the work into independent jobs and distribute them through something like SQS.</p>
+        <p>I'd also introduce controlled concurrency, retries with backoff, deduplication and checkpointing so that if a worker fails, I don't lose all the progress.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 3 -->
+    <section class="category-section" data-category="networking">
+      <div class="category-header">
+        <span>3. Networking, HTTP, TLS & Anti-Bot Evasion</span>
+        <span class="category-count">5 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q4. "Explain what happens when you enter a URL in a browser."</h3>
+        <p><strong>Answer:</strong><br>
+        First, the browser resolves the domain name to an IP address using DNS.</p>
+        <p>Then it establishes a TCP connection with the server. If it's HTTPS, there is also a TLS handshake.</p>
+        <p>After that, the browser sends an HTTP request containing things like the method, URL, headers and possibly a body.</p>
+        <p>The server processes the request and sends an HTTP response containing a status code, headers and the response body.</p>
+        <p>The browser then processes the response. If it's HTML, it parses it and may make additional requests for JavaScript, CSS, images or APIs.</p>
+        <div class="follow-up">
+          <strong>Follow-up:</strong> "What is the difference between HTTP and HTTPS?"<br>
+          <em>Answer:</em> HTTPS is HTTP over TLS. TLS provides encryption, server authentication and integrity for the communication.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q5. "What are the important HTTP status codes you know?"</h3>
+        <p><strong>Answer:</strong><br>
+        <strong>200:</strong> Successful response.<br>
+        <strong>201:</strong> Resource successfully created.<br>
+        <strong>301 / 302:</strong> Redirects (permanent / temporary).<br>
+        <strong>400:</strong> Bad request.<br>
+        <strong>401:</strong> Authentication required or failed.<br>
+        <strong>403:</strong> Forbidden — server understood but refuses.<br>
+        <strong>404:</strong> Resource not found.<br>
+        <strong>429:</strong> Too many requests (rate limiting).<br>
+        <strong>500:</strong> Internal server error.<br>
+        <strong>502 / 503:</strong> Bad gateway / service unavailable (upstream issues).</p>
+        <div class="follow-up">
+          <strong>Then they may ask:</strong> "What would you do with a 429?"<br>
+          <em>Answer:</em> I wouldn't immediately retry aggressively. I'd use backoff, respect rate limits, potentially reduce concurrency, and retry after an appropriate delay if the system allows it.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q8. "Why did you use curl_cffi instead of requests?"</h3>
+        <p><strong>Answer:</strong><br>
+        One reason was that some protected websites were sensitive to the TLS characteristics of the client.</p>
+        <p>Standard Python requests doesn't behave exactly like a real browser at the TLS and HTTP fingerprinting level.</p>
+        <p>curl_cffi allows us to make requests with browser-like TLS fingerprints, which helped in cases where a normal requests client was being detected or blocked.</p>
+        <p>I used it specifically where the target's anti-bot system was sensitive to those characteristics.</p>
+        <div class="follow-up">
+          <strong>Likely follow-up:</strong> "What is TLS fingerprinting?"<br>
+          <em>Answer:</em> A server can observe characteristics of a client's TLS handshake — such as supported cipher suites, extensions and their ordering — and use those characteristics as part of identifying the client. A TLS fingerprint (e.g. JA3) is essentially a representation of those characteristics.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q34. "What are some common ways websites detect automated clients?"</h3>
+        <p><strong>Answer:</strong><br>
+        There are several signals:</p>
+        <p>1. Request frequency, burst patterns, and behavioral anomalies.<br>
+        2. IP reputation, datacenter vs residential IP ranges.<br>
+        3. Headers (User-Agent, Sec-CH-UA, Accept-Language, Referer) consistency.<br>
+        4. Cookies, session validation, and CSRF tokens.<br>
+        5. Browser execution characteristics (navigator.webdriver flags, canvas/webgl fingerprints).<br>
+        6. TLS characteristics (JA3/JA4 fingerprints, cipher suite order, HTTP/2 frames).</p>
+        <p>In my work, I've dealt with TLS fingerprinting, browser automation detection and session/token-related behavior.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q35. "You mention Frida and mitmproxy. Why did you use them?"</h3>
+        <p><strong>Answer:</strong><br>
+        Some mobile applications don't expose their backend APIs directly in an obvious way.</p>
+        <p>We used traffic interception to understand the communication between the application and its backend.</p>
+        <p>Tools like mitmproxy helped inspect network traffic where possible, while Frida could be used to instrument application behavior at runtime.</p>
+        <p>This helped us understand things like API signatures, request construction and dynamically generated headers (bypassing SSL pinning with Frida scripts and Magisk).</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 4 -->
+    <section class="category-section" data-category="aws">
+      <div class="category-header">
+        <span>4. Cloud Infrastructure, AWS & Distributed Systems</span>
+        <span class="category-count">8 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q14. "Why did you use SQS?"</h3>
+        <p><strong>Answer:</strong><br>
+        We used SQS to decouple job submission from job processing.</p>
+        <p>Instead of the API directly performing the extraction, the API could create a job and put it into an SQS queue.</p>
+        <p>Workers then consume jobs independently.</p>
+        <p>This gives us better scalability because we can increase the number of workers based on workload. It also provides buffering when there are more jobs than workers can process immediately.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q15. "What is visibility timeout in SQS?"</h3>
+        <p><strong>Answer:</strong><br>
+        When a worker receives a message from SQS, the message isn't immediately deleted. It becomes temporarily invisible to other consumers for the visibility-timeout period.</p>
+        <p>The worker is expected to process the message and delete it before the timeout expires.</p>
+        <p>If it doesn't delete the message before the timeout, the message can become visible again and another worker may process it.</p>
+        <p>In our case, incorrect visibility-timeout behavior contributed to duplicate processing, so we had to investigate the relationship between processing time, visibility timeout and our Redis locking mechanism.</p>
+        <div class="callout">
+          <strong>Key Resume Connection:</strong> Your resume explicitly highlights solving the SQS visibility-timeout root cause producing duplicate tasks.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q16. "Why did you use Redis?"</h3>
+        <p><strong>Answer:</strong><br>
+        We used Redis for fast in-memory operations, particularly for distributed locking and some monitoring-related functionality.</p>
+        <p>For example, when multiple workers could potentially process the same task, Redis locks helped coordinate access and prevent duplicate processing.</p>
+        <p>We also used Redis TimeSeries for monitoring pipeline metrics.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q17. "What is a distributed lock?"</h3>
+        <p><strong>Answer:</strong><br>
+        A distributed lock is a mechanism that allows multiple processes or machines to coordinate access to a shared resource.</p>
+        <p>For example, if two workers receive the same logical task, they can both attempt to process it. A distributed lock allows one worker to acquire the lock while the other waits or skips processing.</p>
+        <p>The important parts are correct lock acquisition (<code>SET resource_name my_random_value NX PX 30000</code>), expiration/TTL, ownership verification during release (Lua script), and safe renewal.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q18. "Explain the architecture of one of your extraction systems."</h3>
+        <p><strong>Answer:</strong><br>
+        A simplified version would be:</p>
+        <p>1. The client submits a job through an API.<br>
+        2. The API validates the request and puts the job into SQS.<br>
+        3. Workers consume messages from SQS and perform the extraction.<br>
+        4. Depending on the workload, the workers can run on Lambda or EC2.<br>
+        5. The extracted data is validated and stored in PostgreSQL or MongoDB.<br>
+        6. Redis is used for locks or fast state management.<br>
+        7. Grafana is used for monitoring, and alerts can be sent when failure rates cross a threshold.</p>
+        <p>The advantage of this architecture is that the API layer is decoupled from extraction, allowing the worker layer to scale independently.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q19. "Why did you migrate Naver from Lambda to EC2?"</h3>
+        <p><strong>Answer:</strong><br>
+        The workload and execution characteristics made a persistent service more appropriate.</p>
+        <p>We moved the Naver workload to a FastAPI and Gunicorn service running on EC2 with 32 workers.</p>
+        <p>This gave us more control over the long-running service, worker configuration, connection behavior and throughput.</p>
+        <p>Lambda is very useful for event-driven workloads, but it isn't automatically the best choice for every high-throughput workload.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q39. "How did you save $15,000 per month on AWS?"</h3>
+        <div class="callout">
+          <strong>High-Stakes Resume Item:</strong> Be precise and technical.
+        </div>
+        <p><strong>Answer:</strong><br>
+        We performed an account-level AWS audit and identified infrastructure that was either unnecessary or incorrectly configured:</p>
+        <p>1. <strong>NAT Gateways & VPC Endpoints:</strong> Some of the savings came from removing unused NAT Gateway resources, configuring Gateway VPC endpoints (S3, DynamoDB) to avoid NAT data processing charges, and cleaning up unnecessary Lambda VPC configurations.<br>
+        2. <strong>Compute & Concurrency:</strong> Rightsizing over-provisioned EC2 instances, eliminating idle provisioned concurrency, and optimizing Lambda memory allocations.<br>
+        3. <strong>Storage & Database:</strong> Database indexing and query optimization to reduce execution time and IOPS cost, along with removing unattached EBS volumes and snapshots.</p>
+        <p>After implementing those changes, the overall infrastructure cost was reduced by approximately $15,000 per month.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q40. "Design a system that extracts product prices from 1 million products every day."</h3>
+        <p><strong>Your high-level answer:</strong></p>
+<pre><code>Client / Scheduler
+        |
+        v
+       API
+        |
+        v
+  Job Queue (SQS)
+  +------------+------------+
+  |            |            |
+Worker       Worker       Worker
+  |            |            |
+  +------------+------------+
+        |
+        v
+    Validation
+  +---------+---------+
+  |                   |
+  v                   v
+PostgreSQL         MongoDB
+  \                  /
+   v                v
+   Monitoring (Grafana/Redis)</code></pre>
+        <p><strong>Then explain:</strong><br>
+        - Divide the 1 million products into independent jobs.<br>
+        - The scheduler or API puts jobs into SQS.<br>
+        - Workers consume jobs concurrently (using auto-scaling worker groups).<br>
+        - Each worker extracts the product information and validates schema.<br>
+        - Successful results are persisted; failed jobs are retried with controlled backoff & DLQ.<br>
+        - Use Redis deduplication to prevent redundant requests within the day.<br>
+        - Monitor success rate, latency, failures and throughput in real time.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 5 -->
+    <section class="category-section" data-category="sql">
+      <div class="category-header">
+        <span>5. Databases, SQL & Data Pipelines (ETL)</span>
+        <span class="category-count">6 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q20. "Suppose you have employees and departments. Explain INNER JOIN vs LEFT JOIN."</h3>
+        <p><strong>Answer:</strong><br>
+        <strong>INNER JOIN:</strong> returns only records where there is a match in both tables.<br>
+        <strong>LEFT JOIN:</strong> returns every record from the left table, and matching records from the right table. If there is no match, the right-side columns are NULL.</p>
+        <div class="callout">
+          <strong>Prepare these SQL topics thoroughly:</strong><br>
+          INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, GROUP BY, HAVING, WHERE, Subqueries, CTEs, Window functions (ROW_NUMBER, RANK, DENSE_RANK).
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q21. "Difference between RANK and ROW_NUMBER?"</h3>
+        <p><strong>Answer:</strong><br>
+        Suppose salaries are: <code>100, 100, 90</code></p>
+        <p><strong>ROW_NUMBER()</strong> gives: <code>1, 2, 3</code><br>
+        <strong>RANK()</strong> gives: <code>1, 1, 3</code><br>
+        <strong>DENSE_RANK()</strong> gives: <code>1, 1, 2</code></p>
+        <p><strong>Conclusion:</strong> <code>ROW_NUMBER()</code> gives every row a unique sequential number, while <code>RANK()</code> gives equal values the same rank and leaves gaps after ties.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q28. "Explain ETL using your scraping system."</h3>
+        <p><strong>Answer:</strong><br>
+        In my case, extraction is the first step: we extract raw information from the source.<br>
+        Then we <strong>Transform</strong> it — parsing fields, converting types, cleaning values, validating records and removing duplicates.<br>
+        Finally, we <strong>Load</strong> the processed data into a database such as PostgreSQL or MongoDB.</p>
+        <p>So the scraping pipeline can essentially be viewed as an ETL pipeline where the external website is the source.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q29. "Why did you use PostgreSQL and MongoDB?"</h3>
+        <p><strong>Answer:</strong><br>
+        <strong>PostgreSQL:</strong> Useful when the data has a structured relational model and we need strong querying capabilities, relationships and ACID transactional guarantees.<br>
+        <strong>MongoDB:</strong> Useful when the response structure is more flexible, nested, or when we want to store raw or semi-structured extraction results without rigid migrations.</p>
+        <p>In our systems, PostgreSQL was used for structured operational data while MongoDB was used for raw responses or flexible catalog data.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q30. "How would you optimize a slow SQL query?"</h3>
+        <p><strong>Answer:</strong><br>
+        1. First inspect the query and understand the execution plan using <code>EXPLAIN ANALYZE</code>.<br>
+        2. Check whether appropriate indexes (B-tree, composite, partial) exist for columns used in filtering, joining, and ordering.<br>
+        3. Look for unnecessary full-table scans, expensive nested loop joins, and functions on columns that prevent index usage.<br>
+        4. Check whether we are selecting unnecessary columns (avoid <code>SELECT *</code>) or processing more data than required.<br>
+        5. For extremely large tables, consider table partitioning (by date/range) or read replicas.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q31. "You mention 9.5 million+ records. How did you handle that volume?"</h3>
+        <p><strong>Answer:</strong><br>
+        The main thing was not trying to process everything as one single operation.</p>
+        <p>We used distributed processing and batch-oriented approaches. Jobs were divided into manageable units and processed through queues and workers.</p>
+        <p>For database operations, we used appropriate indexing, TTL-based retention strategies, and parallel scan strategies where applicable.</p>
+        <p>We also had to think carefully about deduplication and connection management because at that scale even small inefficiencies become significant bottlenecks.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 6 -->
+    <section class="category-section" data-category="dsa">
+      <div class="category-header">
+        <span>6. Python, Data Structures & Algorithms (DSA)</span>
+        <span class="category-count">6 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q22. "Why Python for data extraction?"</h3>
+        <p><strong>Answer:</strong><br>
+        Python has a rich ecosystem for HTTP, parsing, browser automation, data processing and backend development.</p>
+        <p>Libraries such as requests, curl_cffi, BeautifulSoup, Playwright, Scrapy and pandas make it practical to build the entire extraction pipeline in one language.</p>
+        <p>Python is also easy to integrate with databases, AWS SDKs (Boto3) and APIs, which makes it ideal for building end-to-end data pipelines.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q23. "How would you remove duplicates from a list?"</h3>
+        <p><strong>Answer:</strong></p>
+<pre><code>def remove_duplicates(arr):
+    return list(set(arr))</code></pre>
+        <p><strong>Immediate caveat to mention:</strong> If I need to preserve the original order:</p>
+<pre><code>def remove_duplicates(arr):
+    return list(dict.fromkeys(arr))</code></pre>
+        <div class="callout">
+          <strong>Complexity:</strong> Average-case time is O(n), and space complexity is O(n).
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q24. "Find the first non-repeating character in a string."</h3>
+        <p><strong>Example:</strong> <code>"aabbcdde"</code> &rarr; <code>'c'</code></p>
+        <p><strong>Approach:</strong><br>
+        First count the frequency of every character using a dictionary or <code>collections.Counter</code>. Then iterate through the string again and return the first character whose frequency is 1.</p>
+<pre><code>def first_unique_char(s: str) -> str:
+    counts = {}
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+    for ch in s:
+        if counts[ch] == 1:
+            return ch
+    return ""</code></pre>
+        <div class="callout">
+          <strong>Complexity:</strong> O(n) time and O(k) space, where k is the number of distinct characters (&le; 256).
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q25. "Group anagrams."</h3>
+        <p><strong>Example:</strong> <code>["eat", "tea", "tan", "ate", "nat", "bat"]</code><br>
+        <strong>Expected:</strong> <code>[["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]</code></p>
+        <p><strong>Answer:</strong></p>
+<pre><code>from collections import defaultdict
+
+def group_anagrams(words):
+    groups = defaultdict(list)
+    for word in words:
+        key = ''.join(sorted(word))
+        groups[key].append(word)
+    return list(groups.values())</code></pre>
+        <p><strong>Explanation:</strong> The sorted version of each word serves as the canonical key because all anagrams produce identical sorted character sequences.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q26. "When would you use a list, set and dictionary in Python?"</h3>
+        <p><strong>Answer:</strong><br>
+        <strong>List:</strong> Ordered collection that allows duplicates; ideal for ordered sequences and indexing.<br>
+        <strong>Set:</strong> Unordered collection of unique elements with O(1) average lookup; ideal for membership testing and deduplication.<br>
+        <strong>Dictionary:</strong> Key-value mapping with O(1) average lookup; ideal for caching, indexing by ID, and count aggregation.</p>
+        <div class="callout">
+          <strong>Real Production Example:</strong> For extraction, I use a set to track already-seen product IDs for deduplication, and a dictionary to map product IDs to extracted structured payloads.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>Q27. "How would you remove duplicate records from a Pandas DataFrame?"</h3>
+        <p><strong>Answer:</strong></p>
+<pre><code># Drop all exact duplicate rows
+df = df.drop_duplicates()
+
+# Drop duplicates based on a specific primary key / ID
+df = df.drop_duplicates(subset=["product_id"], keep="last")</code></pre>
+        <p><strong>Production detail to mention:</strong> In a production pipeline, I would also decide what to do when duplicates have conflicting values — for example, sorting by timestamp and keeping the newest record rather than blindly dropping.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 7 -->
+    <section class="category-section" data-category="reliability">
+      <div class="category-header">
+        <span>7. Reliability, Monitoring & System Failure Handling</span>
+        <span class="category-count">4 Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Q12. "How do you make sure extracted data is correct?"</h3>
+        <p><strong>Answer:</strong><br>
+        I use validation at multiple levels:</p>
+        <p>1. <strong>Field Presence:</strong> Validate that mandatory fields (ID, title, price, timestamp) exist.<br>
+        2. <strong>Type & Format:</strong> Prices must be numeric &gt; 0, URLs well-formed, and IDs matching regex patterns.<br>
+        3. <strong>Deduplication:</strong> Checking against database primary keys or Redis hash sets.<br>
+        4. <strong>Metrics & Anomaly Detection:</strong> Monitor extraction success rates, missing-field rates, and record count trends. A sudden spike in missing fields alerts us that the target site structure changed.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q13. "What happens if tomorrow the website changes its HTML structure?"</h3>
+        <p><strong>Answer:</strong><br>
+        That's a common and expected occurrence with web data extraction:</p>
+        <p>1. <strong>Detection:</strong> Automated monitoring flags drops in extracted record volume or sudden nulls in mandatory fields.<br>
+        2. <strong>Inspection:</strong> Manually or programmatically inspect the new DOM/JSON payload.<br>
+        3. <strong>Parser Update & Dual Testing:</strong> Update selectors to use resilient identifiers or switch to an internal API; verify against both old and new payload fixtures.<br>
+        4. <strong>Resilience Strategy:</strong> Prefer internal APIs over HTML selectors whenever available, as APIs change less frequently than frontend markup.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q32. "What happens if a scraper crashes halfway through 1 million records?"</h3>
+        <p><strong>Answer:</strong><br>
+        I wouldn't want the whole job to restart from zero:</p>
+        <p>1. Divide the 1 million workload into small, independent sub-tasks queued in SQS.<br>
+        2. Maintain job state in the database with statuses: <code>pending</code>, <code>processing</code>, <code>success</code>, <code>failed</code>.<br>
+        3. Idempotent workers ensure that re-running a task does not corrupt data.<br>
+        4. SQS Visibility Timeout ensures unacknowledged tasks are re-queued to healthy workers.<br>
+        5. Checkpointing ensures completed batches remain persisted so only the uncompleted portion continues.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Q33. "How do you know your scraper is working correctly?"</h3>
+        <p><strong>Answer:</strong><br>
+        I monitor both infrastructure and business-level metrics in Grafana:</p>
+        <p><strong>Infrastructure:</strong> Worker CPU, memory usage, network I/O, queue depth, Lambda concurrency.<br>
+        <strong>Extraction Domain:</strong> Accepted jobs, queued jobs, success count, failure count, and 'no worker available' states.<br>
+        <strong>Quality Metrics:</strong> Success rate percentage, HTTP status code distribution (monitoring spikes in 403/429/500), and rate of empty or missing fields.</p>
+      </div>
+    </section>
+
+    <!-- CATEGORY 8: MATRIX & DRILLDOWN -->
+    <section class="category-section" data-category="matrix">
+      <div class="category-header">
+        <span>8. Strategic Priority Matrix & Interviewer Drill-down Chains</span>
+        <span class="category-count">Key Preparation Strategy</span>
+      </div>
+
+      <div class="q-item">
+        <h3>Topic Priority Table for Your D.E. Shaw Interview</h3>
+        <table class="priority-table">
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Topic</th>
+              <th>Why it's Crucial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🔴 1</td>
+              <td>Python</td>
+              <td>Core language in your resume and D.E. Shaw role</td>
+            </tr>
+            <tr>
+              <td>🔴 2</td>
+              <td>Web Scraping / HTTP</td>
+              <td>Central responsibility for Data Extraction Engineer</td>
+            </tr>
+            <tr>
+              <td>🔴 3</td>
+              <td>API Reverse Engineering</td>
+              <td>Reported heavily in recent D.E. Shaw interviews</td>
+            </tr>
+            <tr>
+              <td>🔴 4</td>
+              <td>SQL & Joins / Window Functions</td>
+              <td>Explicit role requirement + live test questions</td>
+            </tr>
+            <tr>
+              <td>🔴 5</td>
+              <td>Your Projects (Shopee, Naver)</td>
+              <td>They will challenge every claim on your resume</td>
+            </tr>
+            <tr>
+              <td>🔴 6</td>
+              <td>BeautifulSoup / Requests / Playwright</td>
+              <td>Explicit tooling requirement</td>
+            </tr>
+            <tr>
+              <td>🔴 7</td>
+              <td>HTML / CSS / JSON / JS Basics</td>
+              <td>Foundational for inspecting page dynamics</td>
+            </tr>
+            <tr>
+              <td>🔴 8</td>
+              <td>DSA (Strings, Hashes, Sorting)</td>
+              <td>D.E. Shaw technical interviews frequently include 1-2 coding problems</td>
+            </tr>
+            <tr>
+              <td>🟠 9</td>
+              <td>SQS / Lambda / Distributed Systems</td>
+              <td>Core architecture of your recent production pipelines</td>
+            </tr>
+            <tr>
+              <td>🟠 10</td>
+              <td>PostgreSQL / MongoDB</td>
+              <td>Storage architecture and schema trade-offs</td>
+            </tr>
+            <tr>
+              <td>🟠 11</td>
+              <td>ETL / Data Validation</td>
+              <td>Ensuring high data fidelity across millions of records</td>
+            </tr>
+            <tr>
+              <td>🟠 12</td>
+              <td>Concurrency / Retries / Deduplication</td>
+              <td>Crucial for distributed system reliability</td>
+            </tr>
+            <tr>
+              <td>🟡 13</td>
+              <td>TLS / JA3 / Anti-Bot</td>
+              <td>Your specialized competitive advantage</td>
+            </tr>
+            <tr>
+              <td>🟡 14</td>
+              <td>Frida / mitmproxy</td>
+              <td>Mobile reverse engineering specialization</td>
+            </tr>
+            <tr>
+              <td>🟡 15</td>
+              <td>AWS Cost Optimization</td>
+              <td>Strong $15,000/month resume metric to defend</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="q-item">
+        <h3>Mastering the Interviewer's Drill-Down Chain</h3>
+        <p>Because your resume is very strong technically, expect the interviewer to drill down repeatedly. Here is how to navigate the classic chain:</p>
+        <div class="callout">
+          <strong>"You used SQS."</strong><br>
+          &rarr; <em>Why SQS?</em> &rarr; Decouples API ingestion from extraction worker processing and buffers traffic.<br>
+          &rarr; <em>What happens if the worker crashes?</em> &rarr; The visibility timeout expires without a delete call, returning the message to the queue.<br>
+          &rarr; <em>What is visibility timeout?</em> &rarr; The period during which SQS prevents other consumers from receiving and processing the message.<br>
+          &rarr; <em>What happens if processing takes longer than visibility timeout?</em> &rarr; Another worker picks up the message, producing duplicate task execution.<br>
+          &rarr; <em>How do you prevent duplicates?</em> &rarr; Distributed lock in Redis (SETNX with TTL) plus consumer idempotency based on unique task IDs.<br>
+          &rarr; <em>Why Redis?</em> &rarr; Sub-millisecond in-memory atomic operations.<br>
+          &rarr; <em>What happens if Redis goes down?</em> &rarr; Fallback to DB-level unique constraint or primary key conflict resolution (<code>ON CONFLICT DO NOTHING</code>).<br>
+          &rarr; <em>How do you guarantee exactly-once processing?</em> &rarr; In distributed systems, message delivery is at-least-once; true exactly-once is achieved at the destination via <strong>idempotent writes</strong>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script>
+    const articleHolder = document.getElementById('articleHolder');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const toast = document.getElementById('toast');
+    const searchInput = document.getElementById('searchInput');
+    const pillBtns = document.querySelectorAll('.pill-btn');
+    const sections = document.querySelectorAll('.category-section');
+    const qItems = document.querySelectorAll('.q-item');
+
+    const STORAGE_KEY = 'vinay_deshaw_questions_content_v2';
+    const THEME_KEY = 'vinay_intro_theme_v1';
+
+    const defaultHTML = articleHolder.innerHTML;
+
+    // Load saved edits if present
+    const savedContent = localStorage.getItem(STORAGE_KEY);
+    if (savedContent) {
+      articleHolder.innerHTML = savedContent;
+    }
+
+    // Auto-save changes as user types
+    articleHolder.addEventListener('input', () => {
+      localStorage.setItem(STORAGE_KEY, articleHolder.innerHTML);
+    });
+
+    // Toast helper
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    // Copy formatted text
+    copyBtn.addEventListener('click', async () => {
+      try {
+        const text = articleHolder.innerText;
+        await navigator.clipboard.writeText(text);
+        showToast('✓ Questions copied to clipboard');
+      } catch (err) {
+        const range = document.createRange();
+        range.selectNodeContents(articleHolder);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        showToast('✓ Copied');
+      }
+    });
+
+    // Reset back to original
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset all questions back to original?')) {
+        articleHolder.innerHTML = defaultHTML;
+        localStorage.removeItem(STORAGE_KEY);
+        showToast('Reset to original');
+      }
+    });
+
+    // Theme Switcher
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+      }
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    const storedTheme = localStorage.getItem(THEME_KEY) || 'light';
+    applyTheme(storedTheme);
+
+    // Filtering logic
+    function applyFilters() {
+      const activePill = document.querySelector('.pill-btn.active');
+      const cat = activePill ? activePill.dataset.cat : 'all';
+      const term = searchInput.value.toLowerCase().trim();
+
+      const currentSections = articleHolder.querySelectorAll('.category-section');
+
+      currentSections.forEach(sec => {
+        const secCat = sec.dataset.category;
+        const matchesCategory = (cat === 'all' || cat === secCat);
+
+        if (!matchesCategory) {
+          sec.style.display = 'none';
+          return;
+        }
+
+        let visibleItemsInSec = 0;
+        const items = sec.querySelectorAll('.q-item');
+
+        items.forEach(item => {
+          const text = item.innerText.toLowerCase();
+          const matchesSearch = !term || text.includes(term);
+
+          if (matchesSearch) {
+            item.style.display = '';
+            visibleItemsInSec++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        sec.style.display = (visibleItemsInSec > 0 || !term) ? '' : 'none';
+      });
+    }
+
+    pillBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pillBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', applyFilters);
+  </script>
+</body>
+</html>
