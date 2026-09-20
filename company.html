@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Profiles: D.E. Shaw & Gamyam Infotech - Bonam Vinay Bhaskar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfbfb;
+      --paper: #ffffff;
+      --text: #1d2129;
+      --text-muted: #5f6b7c;
+      --heading: #0f141c;
+      --border: #e6e8eb;
+      --accent: #2563eb;
+      --highlight-bg: #eff6ff;
+      --highlight-border: #bfdbfe;
+      --highlight-text: #1d4ed8;
+      --badge-bg: #f1f5f9;
+      --badge-text: #475569;
+      --button-bg: #ffffff;
+      --button-hover: #f1f5f9;
+      --button-border: #d0d7de;
+      --code-bg: #f6f8fa;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --font-body: 'Newsreader', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-code: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --paper: #161b22;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --heading: #f0f6fc;
+      --border: #30363d;
+      --accent: #38bdf8;
+      --highlight-bg: rgba(56, 189, 248, 0.12);
+      --highlight-border: rgba(56, 189, 248, 0.35);
+      --highlight-text: #7dd3fc;
+      --badge-bg: #21262d;
+      --badge-text: #a5d6ff;
+      --button-bg: #21262d;
+      --button-hover: #30363d;
+      --button-border: #363b42;
+      --code-bg: #1f242c;
+      --shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      line-height: 1.85;
+      padding: 2.5rem 1rem 5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      max-width: 820px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-family: var(--font-ui);
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button, .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.825rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--button-border);
+      border-radius: 6px;
+      background: var(--button-bg);
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    button:hover, .nav-link:hover {
+      background: var(--button-hover);
+      border-color: var(--accent);
+    }
+
+    button:active, .nav-link:active {
+      transform: scale(0.98);
+    }
+
+    /* Filter & Search Bar */
+    .category-nav-wrapper {
+      max-width: 820px;
+      margin: 0 auto 1.5rem auto;
+      font-family: var(--font-ui);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    .category-pills {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    .pill-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Article Container */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3.5rem 3.25rem;
+      box-shadow: var(--shadow);
+      outline: none;
+      position: relative;
+    }
+
+    .article-container[contenteditable="true"] {
+      cursor: text;
+    }
+
+    .article-container:focus-visible {
+      border-color: var(--accent);
+    }
+
+    /* Article Typography */
+    .article-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-title {
+      font-family: var(--font-ui);
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-subtitle {
+      font-family: var(--font-ui);
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Category Section Headers */
+    .category-section {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .category-header {
+      font-family: var(--font-ui);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.01em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-count {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+    }
+
+    /* Section Cards */
+    .q-item {
+      margin-bottom: 2.25rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .q-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Highlighted Headings */
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--highlight-text);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 0.85rem;
+      background: var(--highlight-bg);
+      border-left: 3px solid var(--highlight-text);
+      border-radius: 0 6px 6px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    p strong {
+      font-weight: 600;
+      color: var(--heading);
+      font-family: var(--font-body);
+    }
+
+    /* Callouts */
+    .callout {
+      font-family: var(--font-ui);
+      font-size: 0.925rem;
+      line-height: 1.6;
+      background: var(--badge-bg);
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.15rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0 1.25rem 0;
+      color: var(--text);
+    }
+
+    .callout.danger {
+      background: rgba(239, 68, 68, 0.08);
+      border-left-color: #ef4444;
+      color: #991b1b;
+    }
+
+    [data-theme="dark"] .callout.danger {
+      color: #fca5a5;
+    }
+
+    .callout.success {
+      background: rgba(16, 185, 129, 0.08);
+      border-left-color: #10b981;
+      color: #065f46;
+    }
+
+    [data-theme="dark"] .callout.success {
+      color: #6ee7b7;
+    }
+
+    /* Fact Cards Grid */
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0 1.5rem 0;
+      font-family: var(--font-ui);
+    }
+
+    .fact-card {
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+    }
+
+    .fact-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .fact-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.35;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #111827;
+      color: #ffffff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+
+    [data-theme="dark"] .toast {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem 3rem;
+        font-size: 1.12rem;
+      }
+      .article-container {
+        padding: 2rem 1.25rem;
+        border-radius: 8px;
+      }
+      .article-title {
+        font-size: 1.55rem;
+      }
+      h3 {
+        font-size: 1.05rem;
+      }
+      .top-bar {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .top-bar, .category-nav-wrapper, .toast {
+        display: none !important;
+      }
+      .article-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+      h3 {
+        background: none;
+        border-left: 2px solid #000;
+        color: #000;
+        padding-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action & Info Bar -->
+  <div class="top-bar">
+    <div class="meta-info">
+      <span class="dot"></span>
+      <span>Click text anywhere to edit</span>
+    </div>
+    <div class="controls">
+      <button id="copyBtn" title="Copy text to clipboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy Text</span>
+      </button>
+      <button id="resetBtn" title="Reset changes back to default">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span>Reset</span>
+      </button>
+      <button id="themeToggle" title="Toggle Light/Dark Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+      <a href="index.html" class="nav-link" id="introLink" title="Self Introduction">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Self Intro</span>
+      </a>
+      <a href="interview-questions.html" class="nav-link" id="techLink" title="Technical Questions">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+        </svg>
+        <span>Technical (41)</span>
+      </a>
+      <a href="behavioral-questions.html" class="nav-link" id="behavLink" title="Behavioral Questions">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>Behavioral (24)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Search & Category Filters -->
+  <div class="category-nav-wrapper">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search company notes, facts, Gamyam projects, Shopee, D.E. Shaw pitch..." />
+    <div class="category-pills">
+      <button class="pill-btn active" data-cat="all">All Profiles</button>
+      <button class="pill-btn" data-cat="deshaw">D.E. Shaw Overview (45-60s)</button>
+      <button class="pill-btn" data-cat="gamyam-overview">Gamyam Infotech Profile</button>
+      <button class="pill-btn" data-cat="gamyam-qa">Gamyam Interview Q&A</button>
+      <button class="pill-btn" data-cat="claims">The 5 Core Resume Claims</button>
+    </div>
+  </div>
+
+  <!-- Main Article Container -->
+  <main class="article-container" id="articleHolder" contenteditable="true" spellcheck="false">
+    <div class="article-header">
+      <h1 class="article-title">Company Profiles & Context</h1>
+      <div class="article-subtitle">D.E. Shaw Firm Knowledge & Bulletproof Answers on Gamyam Infotech</div>
+    </div>
+
+    <!-- SECTION 1: D.E. SHAW -->
+    <section class="category-section" data-category="deshaw">
+      <div class="category-header">
+        <span>1. D.E. Shaw — Company Summary & 45–60s Pitch</span>
+        <span class="category-count">Target Firm</span>
+      </div>
+
+      <div class="q-item">
+        <h3>"What do you know about D.E. Shaw?" (45–60 Second Answer)</h3>
+        <p><strong>Answer:</strong><br>
+        D.E. Shaw is a global investment and technology development firm, founded in 1988 by David E. Shaw. The firm started with a strong focus on computational finance and has grown into a global organization combining investment management with sophisticated technology and data-driven research.</p>
+        <p>The company uses both systematic and fundamental investment approaches, and technology is a major part of how the firm operates. D.E. Shaw has more than 750 developers and engineers working on technology and builds its own proprietary systems when existing solutions don't meet its requirements.</p>
+        <p>What I found particularly interesting is the company's emphasis on analytical rigor, data, technology, and solving difficult problems. That connects well with my experience in data extraction and building scalable data pipelines.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>3 Core Facts Worth Remembering</h3>
+        <div class="fact-grid">
+          <div class="fact-card">
+            <div class="fact-label">Founded</div>
+            <div class="fact-value">1988</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">By David E. Shaw</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-label">Business Nature</div>
+            <div class="fact-value">Global Investment + Tech Development</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Systematic & Fundamental</div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-label">Engineering Scale</div>
+            <div class="fact-value">750+ Developers & Engineers</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Builds proprietary internal systems</div>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Indian Presence:</strong> D.E. Shaw has offices in <strong>Hyderabad, Bengaluru, and Gurugram</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: GAMYAM INFOTECH PROFILE -->
+    <section class="category-section" data-category="gamyam-overview">
+      <div class="category-header">
+        <span>2. Gamyam Infotech — Accurate Framing & Public Context</span>
+        <span class="category-count">Current Employer</span>
+      </div>
+
+      <div class="q-item">
+        <h3>If DE Shaw asks: "Tell me about your current company"</h3>
+        <p><strong>Natural, Grounded Answer:</strong><br>
+        Currently, I’m working at Gamyam Infotech LLP in Hyderabad as a Software Engineer. The company works on software and technology projects, and my work there has mainly been focused on backend engineering and large-scale web data extraction.</p>
+        <p>In my role, I've worked on building data extraction systems for platforms such as Shopee, Naver, Swiggy, Zomato, Blinkit and Zepto. My work involves Python, Django and FastAPI on the backend, along with AWS services such as Lambda, SQS and EC2, and databases like PostgreSQL and MongoDB.</p>
+        <p>A significant part of my experience has been around building reliable extraction pipelines — handling jobs, retries, concurrency, data validation, deduplication and monitoring. So although Gamyam is my employer, the experience I've gained there has been very hands-on from both the software engineering and data-extraction sides.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>Public Background vs. Interview Strategy</h3>
+        <p>The company appears publicly as <strong>Gamyam Info Tech LLP</strong>, registered in the Hyderabad/Rangareddy area.</p>
+        <p>Public employee profiles identify people working at Gamyam Infotech in software/backend engineering roles, and job postings focus on Python, Django, scalable web applications, ownership of modules, and deployment.</p>
+        <div class="callout danger">
+          <strong>Crucial Distinction:</strong> Do not say <em>"Gamyam is a leading global data extraction enterprise"</em> unless officially verifiable. Public records are concise; your actual hands-on projects, systems, and code are your true proof points.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: GAMYAM Q&A -->
+    <section class="category-section" data-category="gamyam-qa">
+      <div class="category-header">
+        <span>3. Likely Questions About Gamyam Infotech</span>
+        <span class="category-count">4 Key Questions</span>
+      </div>
+
+      <div class="q-item">
+        <h3>1. "What does your company do?"</h3>
+        <p><strong>Answer:</strong><br>
+        Gamyam works on software and technology projects. In my particular role, I've been primarily involved in backend engineering and web data extraction.</p>
+        <p>A lot of my work has been around building production extraction pipelines for different platforms, along with the backend infrastructure required to process, store and monitor that data.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>2. "What exactly do you do at Gamyam?"</h3>
+        <p><strong>Answer:</strong><br>
+        I'm mainly responsible for the engineering side of data extraction.</p>
+        <p>That includes understanding how the source exposes its data, building the extraction logic, handling APIs and browser-based extraction when required, processing and validating the results, and integrating everything with our backend systems.</p>
+        <p>I've also worked on the infrastructure side with AWS, SQS, databases, Redis and monitoring.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>3. "What is the biggest project you've worked on there?"</h3>
+        <p><strong>Answer (Shopee Multi-Market Pipeline):</strong><br>
+        One of the bigger projects I've worked on was a multi-market Shopee extraction pipeline.</p>
+        <p>It was designed as an asynchronous system where clients submit jobs and receive a job ID. The jobs are then distributed to different workers depending on the extraction approach.</p>
+        <p>The workers extract the data, return the results for processing, and successful records are validated and stored. Failed jobs can be retried, and the overall pipeline is monitored using Grafana and alerts.</p>
+        <p>The interesting part for me was that it wasn't just about scraping a page — it involved designing the complete distributed processing workflow.</p>
+      </div>
+
+      <div class="q-item">
+        <h3>4. "Why do you want to leave Gamyam?"</h3>
+        <p><strong>Answer (Professional & Growth-Focused):</strong><br>
+        I've learned a lot at Gamyam, especially through hands-on experience with data extraction, Python, AWS and distributed systems.</p>
+        <p>At this point, I'm looking for an environment where I can work on more challenging problems, learn from highly experienced engineers and deepen my understanding of large-scale data and engineering systems.</p>
+        <p>That's what attracted me to this opportunity at DE Shaw.</p>
+        <div class="callout success">
+          <strong>Rule:</strong> Keep it 100% positive. Don't say anything negative about Gamyam, management, or workload.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <h3>5. "What did you learn at Gamyam?"</h3>
+        <p><strong>Answer (Scraper vs. Production System):</strong><br>
+        The biggest thing I learned is that <strong>building a scraper and building a reliable data-extraction system are very different things</strong>.</p>
+        <p>Initially, the focus can be on simply getting the data. But when you operate at scale, you have to think about retries, concurrency, duplicate processing, data quality, monitoring, database performance and failure recovery.</p>
+        <p>Working on these systems gave me a much better understanding of production engineering.</p>
+        <div class="callout">
+          <strong>Why this works:</strong> Connects your Gamyam experience directly to why you are ready for DE Shaw's Data Extraction Engineer role.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE 5 CORE CLAIMS -->
+    <section class="category-section" data-category="claims">
+      <div class="category-header">
+        <span>4. What DE Shaw Interviewers Actually Care About</span>
+        <span class="category-count">5 Core Resume Claims</span>
+      </div>
+
+      <div class="q-item">
+        <h3>"What did YOU personally build?" — The 5 Anchors</h3>
+        <p>If the DE Shaw interviewer asks about Gamyam, they will care 10x more about your personal engineering decisions than company headcount. Master these 5 stories:</p>
+        
+        <ol>
+          <li>
+            <strong>Shopee Pipeline:</strong> Asynchronous job submission &rarr; SQS queue &rarr; distributed worker pool &rarr; validation &rarr; Aurora PostgreSQL / MongoDB &rarr; Grafana monitoring.
+          </li>
+          <li>
+            <strong>Naver Extraction System:</strong> Migrated from Lambda to EC2 persistent service running FastAPI + Gunicorn with 32 workers to maintain continuous browser session states in MongoDB.
+          </li>
+          <li>
+            <strong>SQS + Redis Duplicate-Processing Problem:</strong> Identified visibility timeout expiring before slow workers finished; resolved with Redis distributed locking (SETNX with TTL), heartbeat extensions, and idempotent writes.
+          </li>
+          <li>
+            <strong>AWS Architecture:</strong> Decoupled producer-consumer pipelines using API Gateway, Lambda, SQS, EC2, PostgreSQL, MongoDB, Redis, and Grafana.
+          </li>
+          <li>
+            <strong>$15,000/Month AWS Cost Optimization:</strong> Account-wide audit removing unused NAT Gateways, routing S3/DynamoDB traffic through Gateway VPC endpoints, rightsizing EC2/Lambda concurrency, and cleaning up unattached EBS volumes.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script>
+    const articleHolder = document.getElementById('articleHolder');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const toast = document.getElementById('toast');
+    const searchInput = document.getElementById('searchInput');
+    const pillBtns = document.querySelectorAll('.pill-btn');
+
+    const STORAGE_KEY = 'vinay_company_content_v1';
+    const THEME_KEY = 'vinay_intro_theme_v1';
+
+    const defaultHTML = articleHolder.innerHTML;
+
+    // Load saved edits if present
+    const savedContent = localStorage.getItem(STORAGE_KEY);
+    if (savedContent) {
+      articleHolder.innerHTML = savedContent;
+    }
+
+    // Auto-save changes
+    articleHolder.addEventListener('input', () => {
+      localStorage.setItem(STORAGE_KEY, articleHolder.innerHTML);
+    });
+
+    // Toast
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    // Copy formatted text
+    copyBtn.addEventListener('click', async () => {
+      try {
+        const text = articleHolder.innerText;
+        await navigator.clipboard.writeText(text);
+        showToast('✓ Copied to clipboard');
+      } catch (err) {
+        const range = document.createRange();
+        range.selectNodeContents(articleHolder);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        showToast('✓ Copied');
+      }
+    });
+
+    // Reset back to original
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset company notes back to original?')) {
+        articleHolder.innerHTML = defaultHTML;
+        localStorage.removeItem(STORAGE_KEY);
+        showToast('Reset to original');
+      }
+    });
+
+    // Theme Switcher
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+      }
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    const storedTheme = localStorage.getItem(THEME_KEY) || 'light';
+    applyTheme(storedTheme);
+
+    // Filter & Search
+    function applyFilters() {
+      const activePill = document.querySelector('.pill-btn.active');
+      const cat = activePill ? activePill.dataset.cat : 'all';
+      const term = searchInput.value.toLowerCase().trim();
+
+      const currentSections = articleHolder.querySelectorAll('.category-section');
+
+      currentSections.forEach(sec => {
+        const secCat = sec.dataset.category;
+        const matchesCategory = (cat === 'all' || cat === secCat);
+
+        if (!matchesCategory) {
+          sec.style.display = 'none';
+          return;
+        }
+
+        let visibleItemsInSec = 0;
+        const items = sec.querySelectorAll('.q-item');
+
+        items.forEach(item => {
+          const text = item.innerText.toLowerCase();
+          const matchesSearch = !term || text.includes(term);
+
+          if (matchesSearch) {
+            item.style.display = '';
+            visibleItemsInSec++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        sec.style.display = (visibleItemsInSec > 0 || !term) ? '' : 'none';
+      });
+    }
+
+    pillBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pillBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', applyFilters);
+  </script>
+</body>
+</html>
