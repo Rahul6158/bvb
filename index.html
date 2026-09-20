@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonam Vinay Bhaskar - Self Introduction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfbfb;
+      --paper: #ffffff;
+      --text: #1d2129;
+      --text-muted: #5f6b7c;
+      --heading: #0f141c;
+      --border: #e6e8eb;
+      --accent: #2563eb;
+      --highlight-bg: #eff6ff;
+      --highlight-border: #bfdbfe;
+      --highlight-text: #1d4ed8;
+      --badge-bg: #f1f5f9;
+      --badge-text: #475569;
+      --button-bg: #ffffff;
+      --button-hover: #f1f5f9;
+      --button-border: #d0d7de;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --font-body: 'Newsreader', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --paper: #161b22;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --heading: #f0f6fc;
+      --border: #30363d;
+      --accent: #38bdf8;
+      --highlight-bg: rgba(56, 189, 248, 0.12);
+      --highlight-border: rgba(56, 189, 248, 0.35);
+      --highlight-text: #7dd3fc;
+      --badge-bg: #21262d;
+      --badge-text: #a5d6ff;
+      --button-bg: #21262d;
+      --button-hover: #30363d;
+      --button-border: #363b42;
+      --shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      line-height: 1.85;
+      padding: 2.5rem 1rem 5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      max-width: 760px;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-family: var(--font-ui);
+    }
+
+    .meta-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    button {
+      font-family: var(--font-ui);
+      font-size: 0.825rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--button-border);
+      border-radius: 6px;
+      background: var(--button-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background: var(--button-hover);
+      border-color: var(--accent);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* Article Container */
+    .article-container {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3.5rem 3.25rem;
+      box-shadow: var(--shadow);
+      outline: none;
+      position: relative;
+    }
+
+    .article-container[contenteditable="true"] {
+      cursor: text;
+    }
+
+    .article-container:focus-visible {
+      border-color: var(--accent);
+    }
+
+    /* Article Typography */
+    .article-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-title {
+      font-family: var(--font-ui);
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-subtitle {
+      font-family: var(--font-ui);
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Highlighted Headings */
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--highlight-text);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      background: var(--highlight-bg);
+      border-left: 3px solid var(--highlight-text);
+      border-radius: 0 6px 6px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    .article-container > h3:first-of-type {
+      margin-top: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1.35rem;
+      color: var(--text);
+    }
+
+    p strong {
+      font-weight: 600;
+      color: var(--heading);
+      font-family: var(--font-body);
+    }
+
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #111827;
+      color: #ffffff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+
+    [data-theme="dark"] .toast {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Small screens adjustments */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem 3rem;
+        font-size: 1.15rem;
+      }
+      .article-container {
+        padding: 2rem 1.25rem;
+        border-radius: 8px;
+      }
+      .article-title {
+        font-size: 1.55rem;
+      }
+      h3 {
+        font-size: 1.05rem;
+      }
+      .top-bar {
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .top-bar, .toast {
+        display: none !important;
+      }
+      .article-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+      h3 {
+        background: none;
+        border-left: 2px solid #000;
+        color: #000;
+        padding-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action & Info Bar -->
+  <div class="top-bar">
+    <div class="meta-info">
+      <span class="dot"></span>
+      <span>Click text anywhere to edit</span>
+    </div>
+    <div class="controls">
+      <button id="copyBtn" title="Copy full text to clipboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy Text</span>
+      </button>
+      <button id="resetBtn" title="Reset changes back to default">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span>Reset</span>
+      </button>
+      <button id="themeToggle" title="Toggle Light/Dark Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Single Article Container -->
+  <main class="article-container" id="articleHolder" contenteditable="true" spellcheck="false">
+    <div class="article-header">
+      <h1 class="article-title">Self Introduction</h1>
+      <div class="article-subtitle">Bonam Vinay Bhaskar • Backend & Scalable Systems Engineer</div>
+    </div>
+
+    <h3>1. Introduction</h3>
+    <p>Hi, I’m <strong>Bonam Vinay Bhaskar</strong>, and I’m currently based in <strong>Hyderabad, India</strong>.</p>
+
+    <h3>2. Education</h3>
+    <p>I completed my <strong>B.Tech in Artificial Intelligence and Machine Learning from Swarnandhra College of Engineering and Technology in 2025</strong>, with a CGPA of 8.3.</p>
+
+    <h3>3. Current Experience</h3>
+    <p>Currently, I’m working as a <strong>Software Engineer at Gamyam Infotech</strong>, where I mainly work on <strong>backend development, web data extraction, and scalable data pipelines</strong>. I joined the company in March 2025.</p>
+
+    <h3>4. Technical Experience</h3>
+    <p>Most of my recent work has involved building production scraping systems for platforms like <strong>Shopee, Swiggy, Zomato, Blinkit, Zepto, and Naver</strong>, processing millions of records.</p>
+    <p>My primary technologies are <strong>Python, Django, FastAPI, AWS, SQS, Lambda, PostgreSQL, MongoDB, and Redis</strong>.</p>
+
+    <h3>5. System & Problem-Solving Experience</h3>
+    <p>I’ve worked on distributed systems using <strong>AWS Lambda and SQS</strong>, along with retry mechanisms, deduplication, connection pooling, database optimization, and monitoring.</p>
+    <p>For example, I worked on resolving duplicate-task issues caused by <strong>SQS visibility timeouts and Redis locking</strong>, which helped improve the reliability of the pipeline.</p>
+    <p>I’ve also worked on AWS infrastructure optimization, where an account-level audit helped reduce infrastructure costs by approximately <strong>$15,000 per month</strong>.</p>
+
+    <h3>6. What I Enjoy</h3>
+    <p>I particularly enjoy understanding how systems work internally and solving backend problems related to <strong>scalability, performance, reliability, and data processing</strong>.</p>
+    <p>So overall, I would describe myself as a <strong>backend-focused software engineer with hands-on experience in Python, distributed systems, AWS, and large-scale data pipelines</strong>.</p>
+    <p>That’s a brief introduction about me.</p>
+  </main>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script>
+    const articleHolder = document.getElementById('articleHolder');
+    const copyBtn = document.getElementById('copyBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const toast = document.getElementById('toast');
+
+    const STORAGE_KEY = 'vinay_intro_content_v1';
+    const THEME_KEY = 'vinay_intro_theme_v1';
+
+    // Initial default HTML to restore if needed
+    const defaultHTML = articleHolder.innerHTML;
+
+    // Load saved edits if present
+    const savedContent = localStorage.getItem(STORAGE_KEY);
+    if (savedContent) {
+      articleHolder.innerHTML = savedContent;
+    }
+
+    // Auto-save changes as user types
+    articleHolder.addEventListener('input', () => {
+      localStorage.setItem(STORAGE_KEY, articleHolder.innerHTML);
+    });
+
+    // Toast helper
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    // Copy formatted text
+    copyBtn.addEventListener('click', async () => {
+      try {
+        // Build clean readable text format
+        const text = articleHolder.innerText;
+        await navigator.clipboard.writeText(text);
+        showToast('✓ Text copied to clipboard');
+      } catch (err) {
+        // Fallback
+        const range = document.createRange();
+        range.selectNodeContents(articleHolder);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        showToast('✓ Text copied');
+      }
+    });
+
+    // Reset back to original
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset text back to original introduction?')) {
+        articleHolder.innerHTML = defaultHTML;
+        localStorage.removeItem(STORAGE_KEY);
+        showToast('Reset to original');
+      }
+    });
+
+    // Theme Switcher (Default: Light)
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
+      } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark';
+      }
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    // Initial theme setup (defaults to light)
+    const storedTheme = localStorage.getItem(THEME_KEY) || 'light';
+    applyTheme(storedTheme);
+  </script>
+</body>
+</html>
